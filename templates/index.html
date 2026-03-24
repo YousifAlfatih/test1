@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Python File Uploader</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        max-width: 36rem;
+        margin: 2rem auto;
+        padding: 0 1rem;
+      }
+      .card {
+        border: 1px solid #d1d5db;
+        border-radius: 0.5rem;
+        padding: 1rem;
+      }
+      .msg {
+        margin-top: 1rem;
+        padding: 0.75rem;
+        border-radius: 0.375rem;
+      }
+      .ok {
+        background: #ecfdf5;
+        color: #065f46;
+      }
+      .err {
+        background: #fef2f2;
+        color: #991b1b;
+      }
+      button {
+        margin-top: 0.75rem;
+        padding: 0.5rem 1rem;
+      }
+      code {
+        display: block;
+        margin-top: 0.5rem;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Upload a file</h1>
+    <div class="card">
+      <form action="/upload" method="post" enctype="multipart/form-data">
+        <label for="file">Select a file:</label>
+        <input id="file" name="file" type="file" required />
+        <br />
+        <button type="submit">Upload</button>
+      </form>
+
+      {% if success %}
+      <div class="msg ok">{{ success }}
+        {% if stored_path %}<code>Saved to: {{ stored_path }}</code>{% endif %}
+      </div>
+      {% endif %}
+
+      {% if error %}
+      <div class="msg err">{{ error }}</div>
+      {% endif %}
+    </div>
+  </body>
+</html>
